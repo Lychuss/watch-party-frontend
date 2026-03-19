@@ -2,8 +2,8 @@ type MyComponent = {
     className: string
 }
 export default function Dropdown(props: MyComponent){
-    return <nav className={`flex gap-8 items-end justify-end transition-all duration-200
-     ease-[cubic-bezier(0.895,0.03,0.685,0.22)] ${props.className}`}>
+    return <nav className={`absolute right-0 top-13 gap-8 transition-all duration-200
+     ease-[cubic-bezier(0.895,0.03,0.685,0.22)] ${props.className} bg-white z-80 fixed`}>
         <div className="border-r-2 border-black py-2">
             <div role="tablist" className="-mr-0.5 flex flex-col">
             <button role="tab" aria-selected="true" className="border-2 border-black bg-yellow-300
