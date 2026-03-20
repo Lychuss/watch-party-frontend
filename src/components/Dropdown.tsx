@@ -6,8 +6,7 @@ export default function Dropdown(props: MyComponent){
      ease-[cubic-bezier(0.895,0.03,0.685,0.22)] ${props.className} bg-white z-80 fixed`}>
         <div className="border-r-2 border-black py-2">
             <div role="tablist" className="-mr-0.5 flex flex-col">
-            <button role="tab" aria-selected="true" className="border-2 border-black bg-yellow-300
-             px-6 py-2 font-semibold text-black focus:ring-2 focus:ring-yellow-300 focus:outline-0">
+            <button role="tab" aria-selected="true" className="px-6 py-2 font-semibold text-black focus:ring-2 focus:ring-yellow-300 focus:outline-0">
                 Home
             </button>
 
