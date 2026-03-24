@@ -22,16 +22,16 @@ export default function Home(){
     </div>
     <div className="flex flex-col p-2 bg-[rgba(249,199,79,1)] gap-5 border-b-2 border-black xl:h-screen xl:p-25">
       <h1 className="text-5xl font-extrabold mt-3 opacity-0 
-        animate-[fadeUp_1.5s_ease-out_forwards] xl:mt-20 xl:text-6xl">Where Friends <br></br>Meet Online
+        animate-[fadeUp_1.5s_ease-out_forwards] xl:mt-15 xl:text-7xl">Where Friends <br></br>Meet Online
       </h1>
       <div className="xl:flex xl:gap-10">
         <Labels label="Step into a virtual space where you and your friends can watch movies, 
           listen to music, video call, share reactions, chat in real-time, 
           and create unforgettable moments together, no matter where you are in 
-          the world." bg="bg-[rgba(168,218,220,1)] tracking-wide opacity-0 
-          animate-[fadeUp_1.5s_ease-out_forwards] xl:text-lg xl:p-7"> 
+          the world." bg="bg-[rgba(168,218,220,1)] tracking-wide mb-5 xl:tracking-widest opacity-0 
+          animate-[fadeUp_1.5s_ease-out_forwards] xl:text-lg xl:p-5 xl:text-[15px]"> 
         </Labels>
-        <div className="flex items-center justify-center gap-20 xl:flex-col xl:gap-15 xl:w-[100px]">
+        <div className="flex items-center justify-center gap-20 xl:flex-col xl:gap-6 xl:w-[100px]">
           <img src="/icons/star.svg" className="w-[30px] opacity-0 
           animate-[fadeUp_1.5s_ease-out_forwards]"></img>
           <img src="/icons/star.svg" className="w-[30px] opacity-0 
@@ -40,26 +40,27 @@ export default function Home(){
           animate-[fadeUp_1.5s_ease-out_forwards]"></img>
         </div>
       </div>
-      <div className="flex items-center justify-center mb-5">
-        <Button label="Read More" background="bg-[rgba(241,196,15,1)] max-w-[150px] rounded-l-full"
+      <div className="flex items-center justify-center mb-5 xl:items-start xl:justify-start xl:max-w-[70%]">
+        <Button label="Read More" background="bg-[rgba(241,196,15,1)] w-full rounded-l-full"
           onClick={() => console.log()}></Button>
-        <Button label="Get Room" background="bg-[rgba(243,114,44,1)] max-w-[150px] rounded-r-full" 
+        <Button label="Get Room" background="bg-[rgba(243,114,44,1)] w-full rounded-r-full" 
           onClick={() => console.log()}></Button>
       </div>
     </div>
   </div>
-  <div className="bg-[rgba(215,217,215,1)] p-4 flex flex-col items-center justify-center gap-3">
-    <h1 className="font-bold text-2xl text-center opacity-0 animate-[fadeUp_1.5s_ease-out_forwards]">
+  <div className="bg-[rgba(215,217,215,1)] p-4 flex flex-col items-center justify-center gap-3
+    xl:gap-30">
+    <h1 className="font-bold text-2xl text-center opacity-0 animate-[fadeUp_1.5s_ease-out_forwards] xl:text-4xl xl:p-5">
       Watch, play, chat, create</h1>
     <Cards header="Communication" message="Users can instantly join shared rooms where they 
     can video call, chat in real time, watch content together, and interact naturally as 
-    if they are in the same place."></Cards>
+    if they are in the same place." src="/videos/communication.mp4"></Cards>
     <Cards header="Applications" message="This platform is fully web-based, so users can access it
      anytime through their mobile phones or laptops without installing anything, making connection
-      simple and instantly available anywhere."></Cards>
+      simple and instantly available anywhere." src="/videos/application.mp4"></Cards>
     <Cards header="SaaS" message="Enjoy a completely free experience with no ads, no subscriptions,
      and no hidden fees just seamless with fun communication and shared moments, accessible to everyone 
-     anytime."></Cards>
+     anytime." src="/videos/saas.mp4"></Cards>
   </div>
   <div className="bg-[rgba(215,217,215,1)]">
     <div className="p-4 flex flex-col gap-3 border-t-4 border-black rounded-t-3xl bg-white border-b-2">
