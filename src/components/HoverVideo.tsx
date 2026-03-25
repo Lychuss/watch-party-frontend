@@ -28,7 +28,7 @@ export default function HoverVideo(props: MyComponent){
         width="3000"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="cursor-pointer hover:scale-[350] p-5"
+        className="cursor-pointer p-5"
         >
         </video>
     );

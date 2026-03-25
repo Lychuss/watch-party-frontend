@@ -1,10 +1,7 @@
-"use client";
-import { Github } from "lucide-react";
-import { Facebook } from "lucide-react";
-import {Linkedin} from "lucide-react";
 import Labels from "@/components/Labels";
 import Button from "@/components/Button";
 import Cards from "@/components/Cards";
+import Footer from "@/components/Footer";
 
 export default function Home(){
   return <>
@@ -49,8 +46,8 @@ export default function Home(){
     </div>
   </div>
   <div className="bg-[rgba(215,217,215,1)] p-4 flex flex-col items-center justify-center gap-3
-    xl:gap-30">
-    <h1 className="font-bold text-2xl text-center opacity-0 animate-[fadeUp_1.5s_ease-out_forwards] xl:text-4xl xl:p-5">
+    xl:gap-20">
+    <h1 className="font-bold text-2xl xl:text-5xl xl:mt-5 text-center opacity-0 animate-[fadeUp_1.5s_ease-out_forwards] xl:text-4xl xl:p-5">
       Watch, play, chat, create</h1>
     <Cards header="Communication" message="Users can instantly join shared rooms where they 
     can video call, chat in real time, watch content together, and interact naturally as 
@@ -62,63 +59,6 @@ export default function Home(){
      and no hidden fees just seamless with fun communication and shared moments, accessible to everyone 
      anytime." src="/videos/saas.mp4"></Cards>
   </div>
-  <div className="bg-[rgba(215,217,215,1)]">
-    <div className="p-4 flex flex-col gap-3 border-t-4 border-black rounded-t-3xl bg-white border-b-2">
-      <h1 className="text-3xl font-bold text-left opacity-0 
-      animate-[fadeUp_1.5s_ease-out_forwards] mt-3">Built for<br></br>connection by<br></br> 
-      real moments</h1>
-      <p className="opacity-0 animate-[fadeUp_1.5s_ease-out_forwards]">Enjoy and connect<br></br>with each other</p>
-      <Button label="Sign Up" background="bg-white mb-6" onClick={() => console.log()}></Button>
-    </div>
-  </div>
-  <div className="p-4 flex gap-3">
-    <h1 className="text-xl font-bold mr-4">WatchParty</h1>
-    <div className="bg-black border border-black rounded-full w-[27px] h-auto flex items-center
-    justify-center">
-        <Linkedin className="text-white w-[14px]"></Linkedin>
-    </div>
-    <div className="bg-black border border-black rounded-full w-[27px] h-auto flex items-center
-    justify-center">
-        <Facebook className="text-white w-[14px]"></Facebook>
-    </div>
-    <div className="bg-black border border-black rounded-full w-[27px] h-auto flex items-center
-    justify-center">
-        <Github className="text-white w-[14px]"></Github>
-    </div>
-  </div>
-  <div className="ml-4">
-    <div className="mb-3">
-      <h1 className="font-bold mb-2">Developer</h1>
-      <p className="text-xs">Documentation</p>
-      <p className="text-xs">API explorer</p>
-      <p className="text-xs">SDK</p>
-      <p className="text-xs">WatchParty Discord Community</p>
-    </div>
-    <div className="mb-3">
-      <h1 className="font-bold mb-2">Company</h1>
-      <p className="text-xs">Careers</p>
-      <p className="text-xs">Contact sales</p>
-      <p className="text-xs">Privacy & security</p>
-      <p className="text-xs">Legal policies</p>
-    </div>
-    <div>
-      <h1 className="font-bold mb-2">About us</h1>
-      <p className="text-xs">Leadership</p>
-      <p className="text-xs">Newsroom</p>
-      <p className="text-xs">Become a partner</p>
-      <p className="text-xs">Contact us</p>
-    </div>
-    <hr className="border border-gray-200 ml-2 mr-6 mt-3"></hr>
-    <div className="text-[10px] text-left flex gap-3 flex-col my-4">
-      <p>*All references to other companies, systems, 
-        <br></br>software, and/or platforms are for illustrative purposes
-        <br></br>only and do not imply any affiliation with WatchParty.
-        <br></br>WatchParty assumes no liability for a customer's use
-        <br></br>of another company's product, system, software, 
-        <br></br>and/or platform, whether cloud-based or otherwise
-      </p>
-      <p>&copy; 2026 WatchParty Presence Inc.</p>
-    </div>
-  </div>
+  <Footer></Footer>
   </>
 }
