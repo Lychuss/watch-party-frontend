@@ -14,8 +14,9 @@ export default function Footer(){
         Built for connection by real moments</h1>
       <p className="opacity-0 animate-[fadeUp_1.5s_ease-out_forwards] w-full text-left max-w-[190px]
       xl:max-w-[400px] xl:text-xl xl:text-xl xl:text-center xl:mb-3">Enjoy and connect with each other</p>
-      <Button label="Sign Up" background="bg-white mb-6 xl:max-w-[250px]
-      xl:mb-20 xl:text-xl" onClick={() => console.log()}></Button>
+      <Button className="bg-white mb-6 xl:w-[250px] px-5 py-3 
+        shadow-[4px_4px_0_0] hover:bg-yellow-300 focus:ring-2 opacity-0 
+        xl:mb-20 xl:text-xl" onClick={() => console.log()}>Sign Up</Button>
     </div>
   </div>
   <div className="p-4 flex gap-3 xl:p-15">
