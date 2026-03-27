@@ -11,8 +11,8 @@ export default function Login(){
 
     <div className="w-full flex flex-col items-center justify-center lg:bg-[rgba(255,195,18,1)] 
     lg:rounded-r-xl lg:w-[1000px] lg:h-[350px] lg:p-10">
-      <Button background="bg-white mb-2" label="Sign Up" onClick={() => console.log()}/>
-      <Button background="bg-blue-300" label="Login" onClick={() => console.log()}/>
+      <Button className="bg-white mb-2 px-5 py-3 shadow-[4px_4px_0_0] hover:bg-yellow-300 focus:ring-2 opacity-0 " onClick={() => console.log()}>Sign Up</Button>
+      <Button className="bg-blue-300  px-5 py-3 shadow-[4px_4px_0_0] hover:bg-yellow-300 focus:ring-2 opacity-0 " onClick={() => console.log()}>Login</Button>
     </div>
   </div>
 }

@@ -1,15 +1,22 @@
-type MyComponent = {
-    onClick: () => void;
-    background: string;
-    label: string;
-}
+"use client";
+import React from "react";
 
-export default function Button(props: MyComponent){
-    return <>
-        <button className={`border-2 border-black ${props.background} px-5 py-3 font-semibold 
-        text-black shadow-[4px_4px_0_0] hover:bg-yellow-300 focus:ring-2 opacity-0 
-        animate-[fadeUp_1.5s_ease-out_forwards] focus:ring-yellow-300 focus:outline-0 w-full text-sm`}>
-            {props.label}
-        </button>
-    </>
+type ButtonProps = {
+  onClick?: () => void;
+  className?: string;
+  children?: React.ReactNode;
+};
+
+export default function Button({ onClick, className, children }: ButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={`border-2 border-black font-semibold 
+      text-black animate-[fadeUp_1.5s_ease-out_forwards]
+      focus:ring-yellow-300 focus:outline-0 text-sm
+      ${className}`}
+    >
+      {children}
+    </button>
+  );
 }
