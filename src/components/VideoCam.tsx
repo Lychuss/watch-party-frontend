@@ -1,14 +1,20 @@
 import Webcam from "react-webcam";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createOffer } from "@/hooks/VideoRTC";
 
 type Coordinates = {
     x: number | null,
     y: number | null
 }
 
-export default function VideoCam(){
+type MyComponents = {
+    hidden: boolean;
+}
+
+export default function VideoCam(props: MyComponents){
     const [position, setPosition] = useState<Coordinates>({ x: 0, y: 0});
     const [click, setClick] = useState<boolean>(false);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const mouseMove = (event: MouseEvent) => {
             setPosition({
@@ -29,15 +35,17 @@ export default function VideoCam(){
     }, [click]);
 
     return <>
-         <Webcam mirrored className="w-[100px] aspect-square
-    object-cover rounded-full aspect-square absolute"
+         <Webcam mirrored className={`w-[100px] aspect-square
+    object-cover rounded-full aspect-square absolute 
+    ${props.hidden ? "flex" : "hidden"}`}
     style={{ transform: click 
         ? `translate(${position.x}px, ${position.y}px)` 
         : `translate(${position.x}px, ${position.y}px)` }}
     onClick={() => {
         setClick(!click)
-        }}></Webcam>
-    
-    <h1 className="mt-5">{position.x + " what the " + position.y + " " + click}</h1>
+        }}>
+
+        </Webcam>
+        <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" onClick={() => createOffer(videoRef,"WASDSSD")}>Click Me!</button>
     </>
 }
