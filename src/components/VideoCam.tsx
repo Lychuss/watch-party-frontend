@@ -1,6 +1,5 @@
-import Webcam from "react-webcam";
 import { useState, useEffect, useRef } from "react";
-import { createOffer } from "@/hooks/VideoRTC";
+import useWebRTC from "@/hooks/WebRTC";
 
 type Coordinates = {
     x: number | null,
@@ -14,7 +13,10 @@ type MyComponents = {
 export default function VideoCam(props: MyComponents){
     const [position, setPosition] = useState<Coordinates>({ x: 0, y: 0});
     const [click, setClick] = useState<boolean>(false);
-    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const videoRef1 = useRef<HTMLVideoElement | null>(null);
+    const videoRef2 = useRef<HTMLVideoElement | null>(null);
+
+    const {start, localStream, remoteStream, createOffer} = useWebRTC();
 
     const mouseMove = (event: MouseEvent) => {
             setPosition({
@@ -22,6 +24,22 @@ export default function VideoCam(props: MyComponents){
                 y: event.clientY - 20
             })
         };
+    
+    useEffect(() => {
+        start();
+    }, [])
+
+    useEffect(() => {
+        if(videoRef1.current && localStream){
+            videoRef1.current.srcObject = localStream;
+        }
+    }, [localStream])
+
+    useEffect(() => {
+        if(videoRef2.current && remoteStream){
+            videoRef2.current.srcObject = remoteStream;
+        }
+    }, [remoteStream])
 
     useEffect(() => {
 
@@ -35,17 +53,29 @@ export default function VideoCam(props: MyComponents){
     }, [click]);
 
     return <>
-         <Webcam mirrored className={`w-[100px] aspect-square
-    object-cover rounded-full aspect-square absolute 
-    ${props.hidden ? "flex" : "hidden"}`}
-    style={{ transform: click 
-        ? `translate(${position.x}px, ${position.y}px)` 
-        : `translate(${position.x}px, ${position.y}px)` }}
-    onClick={() => {
-        setClick(!click)
-        }}>
-
-        </Webcam>
-        <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" onClick={() => createOffer(videoRef,"WASDSSD")}>Click Me!</button>
+        <video autoPlay playsInline className={`w-[100px] aspect-square
+            object-cover rounded-full aspect-square absolute
+            ${props.hidden ? "flex" : "hidden"}`}
+            style={{ transform: click 
+                ? `translate(${position.x}px, ${position.y}px) scaleX(-1)` 
+                : `translate(${position.x}px, ${position.y}px) scaleX(-1)` }}
+            onClick={() => {
+                setClick(!click)
+                }}
+            ref={videoRef1}>
+        </video>
+        <video autoPlay playsInline className={`w-[100px] aspect-square
+            object-cover rounded-full aspect-square absolute
+            ${props.hidden ? "flex" : "hidden"}`}
+            style={{ transform: click 
+                ? `translate(${position.x}px, ${position.y}px)` 
+                : `translate(${position.x}px, ${position.y}px)` }}
+            onClick={() => {
+                setClick(!click)
+                }}
+            ref={videoRef2}>
+        </video>
+        <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" 
+        onClick={() => createOffer()}>Click Offer!</button>
     </>
 }
