@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { socket } from "@/services/socket";
 
 export default function useWebRTC(){
     const peerConnection = useRef<RTCPeerConnection | null>(null);
@@ -6,7 +7,12 @@ export default function useWebRTC(){
     const [localStream, setLocalStream] = useState<MediaStream | null>(null);
     const [remoteStream, setRemoteStream] = useState<MediaStream | null>(null);
 
-    const start = async () => {
+    const roomIdRef = useRef<string>("");
+
+    const start = async (roomId: string) => {
+
+        roomIdRef.current = roomId;
+
         peerConnection.current = new RTCPeerConnection({
             iceServers:[
         {
@@ -32,7 +38,10 @@ export default function useWebRTC(){
 
         peerConnection.current.onicecandidate = (event) => {
             if(event.candidate){
-                console.log("SEND CANDIDATE", event.candidate);
+                socket.emit("candidate", {
+                    roomId: roomIdRef.current,
+                    candidate: event.candidate
+                });
             }
         };
     };
@@ -43,8 +52,12 @@ export default function useWebRTC(){
         const offer = await peerConnection.current?.createOffer();
         await peerConnection.current?.setLocalDescription(offer);
 
+        socket.emit("offer", {
+            roomId: roomIdRef.current,
+            offer
+        });
         console.log(offer, "created offer");
-    }
+    };
 
     const handleOffer = async (offer: RTCSessionDescriptionInit) => {
         if(!peerConnection.current) throw new Error("PeerConnection already exist");
@@ -56,6 +69,11 @@ export default function useWebRTC(){
         const answer = await peerConnection.current.createAnswer();
 
         await peerConnection.current.setLocalDescription(answer);
+
+        socket.emit("answer", {
+            roomId: roomIdRef.current,
+            answer
+        });
 
         console.log(answer, "CREATED ANSWER");  
     };

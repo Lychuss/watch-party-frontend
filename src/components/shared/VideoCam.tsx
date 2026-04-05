@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 import useWebRTC from "@/hooks/WebRTC";
+import { socket } from "@/services/socket";
+import { v4 as uuidv4 } from "uuid";
 
 type Coordinates = {
     x: number | null,
@@ -15,8 +17,22 @@ export default function VideoCam(props: MyComponents){
     const [click, setClick] = useState<boolean>(false);
     const videoRef1 = useRef<HTMLVideoElement | null>(null);
     const videoRef2 = useRef<HTMLVideoElement | null>(null);
+    const [id, setId] = useState('');
+    const [roomId, setRoomId] = useState<string>("");
 
-    const {start, localStream, remoteStream, createOffer} = useWebRTC();
+    const {
+        start, 
+        localStream, 
+        remoteStream, 
+        createOffer, 
+        handleAnswer,
+        handleCandidate, 
+        handleOffer
+        } = useWebRTC();
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setId(e.target.value);
+    }
 
     const mouseMove = (event: MouseEvent) => {
             setPosition({
@@ -24,9 +40,30 @@ export default function VideoCam(props: MyComponents){
                 y: event.clientY - 20
             })
         };
-    
+
+    const createRoom = () => {
+        const room = uuidv4();
+        console.log(room);
+        setRoomId(room);
+        socket.emit("join-room", room);
+        start(room);
+    }
+
+    const joinRoom = () => {
+        socket.emit("join-room", id);
+        start(id);
+    }
+
     useEffect(() => {
-        start();
+        socket.on("offer", handleOffer);
+        socket.on("answer", handleAnswer);
+        socket.on("candidate", handleCandidate);
+
+        return () =>{
+            socket.off("offer");
+            socket.off("answer");
+            socket.off("candidate");
+        };
     }, [])
 
     useEffect(() => {
@@ -65,17 +102,22 @@ export default function VideoCam(props: MyComponents){
             ref={videoRef1}>
         </video>
         <video autoPlay playsInline className={`w-[100px] aspect-square
-            object-cover rounded-full aspect-square absolute
+            object-cover rounded-full aspect-square absolute top-20 right-40
             ${props.hidden ? "flex" : "hidden"}`}
             style={{ transform: click 
-                ? `translate(${position.x}px, ${position.y}px)` 
-                : `translate(${position.x}px, ${position.y}px)` }}
+                ? `translate(${position.x}px, ${position.y}px) scaleX(-1)` 
+                : `translate(${position.x}px, ${position.y}px) scaleX(-1)` }}
             onClick={() => {
                 setClick(!click)
                 }}
             ref={videoRef2}>
         </video>
         <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" 
+        onClick={() => createRoom()}>Create Room!</button>
+        <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" 
         onClick={() => createOffer()}>Click Offer!</button>
+        <button className="relative border-2 border-black cursor-pointer w-[200px] translate-y-230%" 
+        onClick={() => joinRoom()}>Join Room!</button>
+        <input onChange={handleChange} type="text" placeholder="input room"></input>
     </>
 }

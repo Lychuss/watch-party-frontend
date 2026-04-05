@@ -1,7 +1,7 @@
 import { Github } from "lucide-react";
 import { Facebook } from "lucide-react";
 import {Linkedin} from "lucide-react";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 export default function Footer(){
     return <>

@@ -1,10 +1,10 @@
 "use client";
 
-import Labels from "@/components/Labels";
-import Button from "@/components/Button";
-import Cards from "@/components/Cards";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Labels from "@/components/ui/Labels";
+import Button from "@/components/ui/Button";
+import Cards from "@/components/ui/Cards";
+import Footer from "@/components/layouts/Footer";
+import Navbar from "@/components/layouts/Navbar";
 
 export default function Home(){
   return <>

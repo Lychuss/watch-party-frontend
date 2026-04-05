@@ -1,6 +1,6 @@
 "use client";
 
-import HoverVideo from "./HoverVideo";
+import HoverVideo from "../shared/HoverVideo";
 
 type MyComponent = {
     header: string,

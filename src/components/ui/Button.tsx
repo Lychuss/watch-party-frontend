@@ -13,8 +13,9 @@ export default function Button({ onClick, className, children }: ButtonProps) {
       onClick={onClick}
       className={`border-2 border-black font-semibold 
       text-black animate-[fadeUp_1.5s_ease-out_forwards]
-      focus:ring-yellow-300 focus:outline-0 text-sm
+      focus:ring-yellow-300 focus:outline-0 text-sm w-full
       ${className}`}
+      type="submit"
     >
       {children}
     </button>

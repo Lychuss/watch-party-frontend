@@ -2,8 +2,8 @@
 import { Video, VideoOff, Mic, MicOff, Music, Settings2, PhoneOff } from "lucide-react";
 import { ArrowLeft, Volume2, VolumeOff } from "lucide-react";
 import { useState } from "react";
-import Button from "./Button";
-import Labels from "./Labels";
+import Button from "../ui/Button";
+import Labels from "../ui/Labels";
 import VideoCam from "./VideoCam";
 
 export default function Room(){
